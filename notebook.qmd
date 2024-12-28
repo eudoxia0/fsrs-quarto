@@ -136,7 +136,7 @@ def interval(rd: float, s: S) -> T:
     return (s/F)*(rd**(1.0/C) - 1.0)
 ```
 
-Interval curves as a function of stability, for different values of $R_d$.
+Interval curves as a function of stability, for different values of $R_d$:
 
 ```{python}
 #| code-fold: true
