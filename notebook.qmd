@@ -407,6 +407,21 @@ def delta_d(g: Grade) -> float:
     -W[6] * (g.value - 3.0)
 ```
 
+# The Simulator
+
+```{python}
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class Simulation:
+    grades: list[Grade]
+    ss: list[S]
+    ds: list[D]
+
+def sim(grades: list[Grade]) -> Simulation:
+    pass
+```
+
 # Links
 
 - Description of the algorithm: <https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm>
