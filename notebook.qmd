@@ -165,7 +165,7 @@ plot()
 
 At higher $R_d$, reviews will be more frequent, which is what we expect.
 
-Note that when $R_d = 0.9$, $I(S) = S$:
+Stability is defined as the interval where $R$ will equal $0.9$. So, for $R_d = 0.9$, $I(S) = S$ by definition:
 
 ```{python}
 def eq(a: float, b: float) -> bool:
