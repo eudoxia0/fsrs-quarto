@@ -143,17 +143,18 @@ Interval curves as a function of stability, for different values of $R_d$:
 
 def plot():
     rd_curves = [0.9, 0.8, 0.7]
+    lim = 3.0
     for rd in rd_curves:
-        s = np.linspace(0.1, 3.0, 100)
+        s = np.linspace(0.0, lim, 100)
         i = [interval(rd, s_val) for s_val in s]
         plt.plot(s, i, label=f"$R_d$ = {rd}")
 
     plt.xlabel('S')
-    plt.xlim(0.1, 3.0)
-    plt.xticks(np.arange(0.0, 3.1, 0.5))
+    plt.xlim(0.0, lim)
+    plt.xticks(np.arange(0.0, lim + 0.1, 0.5))
 
     plt.ylabel('I(S)')
-    plt.ylim(0.0, 5.0)
+    plt.ylim(0.0, lim)
 
     plt.legend()
     plt.grid(True)
