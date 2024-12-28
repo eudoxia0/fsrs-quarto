@@ -374,3 +374,7 @@ D_0(G) = w_4 - (G-3)w_5
 $$
 
 Note that where $G=3$ (i.e. Good) then $D_0(3) = w_4$, that is, the parameter $w_4$ represents the initial difficulty for a rating of Good, while $w_5$ is an initial difficulty multiplier.
+
+# Links
+
+- Description of the algorithm: <https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm>
