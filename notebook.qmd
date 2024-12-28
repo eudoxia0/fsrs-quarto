@@ -219,7 +219,7 @@ $$
 
 The addition is because some of the multiplicative terms may be zero, and in that case, $\alpha=1$.
 
-# $t_1$
+### $t_1$
 
 This is the "difficulty penalty", defined by:
 
@@ -228,6 +228,17 @@ d = 11-D
 $$
 
 Harder items (higher $D$) increase stability more slowly. The highest difficulty is $D=10$, here, $d=1$ and therefore difficulty provides no boost. This is intuitive: harder items are harder to consolidate.
+
+### $t_2$
+
+This determines how today's stability affects the next stability:
+
+$$
+s = S^{-w_9}
+$$
+
+If $S$ is high, updates will be smaller. The more stable a memory is, the harder it is to make it more stable. Memory stability saturates.
+
 
 ## Stability on Failure
 
