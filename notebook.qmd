@@ -349,14 +349,11 @@ def s_fail(d: D, s: S, r: R) -> S:
 Putting it all together:
 
 ```{python}
-def stability(d: D, s: S, r: R, g: Grade, first_time: bool) -> S:
-    if first_time:
-        return s_0(g)
+def stability(d: D, s: S, r: R, g: Grade) -> S:
+    if g == Grade.FORGOT:
+        return s_fail(d, s, r)
     else:
-        if g == Grade.FORGOT:
-            return s_fail(d, s, r)
-        else:
-            return s_success(d, s, r, g)
+        return s_success(d, s, r, g)
 ```
 
 # Updating Difficulty
@@ -398,13 +395,13 @@ $$
 
 ```{python}
 def difficulty(d: D, g: Grade) -> D:
-    W[7] * d_0(Grade.EASY) + (1.0 - W[7])*dp(d, g)
+    return W[7] * d_0(Grade.EASY) + (1.0 - W[7])*dp(d, g)
 
 def dp(d: D, g: Grade) -> float:
-    d + delta_d(g) * ((10.0 - d)/9)
+    return d + delta_d(g) * ((10.0 - d)/9)
 
 def delta_d(g: Grade) -> float:
-    -W[6] * (g.value - 3.0)
+    return -W[6] * (g.value - 3.0)
 ```
 
 # The Simulator
@@ -412,14 +409,38 @@ def delta_d(g: Grade) -> float:
 ```{python}
 from dataclasses import dataclass
 
-@dataclass(frozen=True)
-class Simulation:
-    grades: list[Grade]
-    ss: list[S]
-    ds: list[D]
+def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D]]:
+    t: T = 0.0
+    l: list[tuple[T, Grade, S, D]] = []
 
-def sim(grades: list[Grade]) -> Simulation:
-    pass
+    # Initial review.
+    assert len(grades) > 0
+    g: Grade = grades[0]
+    grades = grades[1:]
+    s: S = s_0(g)
+    d: D = d_0(g)
+    l.append((t, g, s, d))
+
+    # nth review.
+    for g in grades:
+        t += 1.0
+        r = retrievability(1.0, s)
+        s = stability(d, s, r, g)
+        d = difficulty(d, g)
+        l.append((t, g, s, d))
+
+    return l
+```
+
+```{python}
+G0 = Grade.FORGOT
+G1 = Grade.HARD
+G2 = Grade.GOOD
+G3 = Grade.EASY
+
+import pandas as pd
+
+print(sim([G2, G2, G2, G2]))
 ```
 
 # Links
