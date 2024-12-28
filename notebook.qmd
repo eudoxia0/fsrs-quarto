@@ -423,16 +423,15 @@ def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D, T]]:
     d: D = d_0(g)
     i: T = floor(interval(r_d, s))
     l.append((t, g, s, d, i))
-    t += i
 
     # nth review.
     for g in grades:
+        t += i
         r = retrievability(i, s)
         s = stability(d, s, r, g)
         d = difficulty(d, g)
         i = floor(interval(r_d, s))
         l.append((t, g, s, d, i))
-        t += i
 
     return l
 ```
