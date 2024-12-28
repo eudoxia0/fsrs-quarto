@@ -199,6 +199,8 @@ assert s_0(Grade.GOOD)   == W[2]
 assert s_0(Grade.EASY)   == W[3]
 ```
 
+That is, the parameters $w_0$ to $w_3$ represent the initial values of stability.
+
 ## Stability on Success
 
 TODO
