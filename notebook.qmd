@@ -23,3 +23,20 @@ Difficulty $D$ is a real number $[0, 10]$.
 ```{python}
 D = float
 ```
+
+Grade $G$ is one of:
+
+- Forgot = 1
+- Hard = 2
+- Good = 3
+- Easy = 4
+
+```{python}
+from enum import Enum
+
+class Grade(Enum):
+    FORGOT = 1
+    HARD   = 2
+    GOOD   = 3
+    EASY   = 4
+```
