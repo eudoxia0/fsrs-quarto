@@ -209,4 +209,14 @@ TODO
 
 # Updating Difficulty
 
-TODO
+This section describes how an item's difficulty is updated after a review.
+
+## First Time
+
+Analogously with stability: an item that has never been reviewed has no difficulty.
+
+The initial difficulty, after the first review, is defined by:
+
+$$
+D_0(G) = w_4 - (G-3)w_5
+$$
