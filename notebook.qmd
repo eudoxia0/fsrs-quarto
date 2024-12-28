@@ -70,7 +70,7 @@ W: list[float] = [
 Retrievability is approximated by:
 
 $$
-R(t) = \left(1 + F\frac{t}{S}\right)^C
+R(t) = \left( 1 + F\frac{t}{S} \right)^C
 $$
 
 Where $t$ is time in days since the last review, and:
@@ -90,4 +90,17 @@ C: float = -0.5
 
 def retrievability(t: T, s: S) -> R:
     return (1.0 + F*(t/s))**C
+```
+
+The review interval is:
+
+$$
+I = \frac{S}{F} \left( R_d^{(1/C)} - 1 \right)
+$$
+
+Where $R_d$ is the desired retention.
+
+```{python}
+def interval(rd: float, s: S) -> T:
+    return (s/F)*(rd**(1.0/C) - 1.0)
 ```
