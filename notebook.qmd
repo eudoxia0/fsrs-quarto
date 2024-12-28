@@ -181,7 +181,23 @@ This section describes how an item's stability is updated after a review.
 
 ## First Time
 
-TODO
+A card that has never been reviewed has no stability.
+
+The first time the user reviews a card, its initial stability is:
+
+$$
+S_0(G) = w_{G-1}
+$$
+
+```{python}
+def s_0(g: Grade):
+    return W[g.value - 1]
+
+assert s_0(Grade.FORGOT) == W[0]
+assert s_0(Grade.HARD)   == W[1]
+assert s_0(Grade.GOOD)   == W[2]
+assert s_0(Grade.EASY)   == W[3]
+```
 
 ## Stability on Success
 
