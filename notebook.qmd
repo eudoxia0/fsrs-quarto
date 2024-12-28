@@ -214,37 +214,37 @@ $$
 Where:
 
 $$
-\alpha = 1 + t_1 t_2 t_3 h(G) b(G) c
+\alpha = 1 + t_d t_s t_r h(G) b(G) c
 $$
 
 The addition is because some of the multiplicative terms may be zero, and in that case, $\alpha=1$.
 
-### $t_1$
+### $t_d$
 
 This is the "difficulty penalty", defined by:
 
 $$
-t_1 = 11-D
+t_d = 11-D
 $$
 
 Harder items (higher $D$) increase stability more slowly. The highest difficulty is $D=10$, here, $d=1$ and therefore difficulty provides no boost. This is intuitive: harder items are harder to consolidate.
 
-### $t_2$
+### $t_s$
 
 This determines how today's stability affects the next stability:
 
 $$
-t_2 = S^{-w_9}
+t_s = S^{-w_9}
 $$
 
 If $S$ is high, updates will be smaller. The more stable a memory is, the harder it is to make it more stable. Memory stability saturates.
 
-### $t_3$
+### $t_r$
 
 This is about memory saturation:
 
 $$
-t_3 = e^{w_{10}(1-R)} - 1
+t_r = e^{w_{10}(1-R)} - 1
 $$
 
 If $R=1$ (100% recall) then $t_3=0$. So $\alpha$ as a whole is $1$, i.e. stability does not change. The lower $R$ is, the higher $\alpha$ will be. So the optimal time to review some material is when you have almost forgotten it. Which is somewhat counterintuitive, but it makes sense: the more you remember something, the fewer the gains from reviewing, dually, the more you have forgotten it, the more room there is to improve.
@@ -283,9 +283,31 @@ $$
 c = e^{w_8}
 $$
 
+Putting it all together:
+
+```{python}
+from math import exp
+
+def s_success(d: D, s: S, r: R, g: Grade) -> S:
+    t_d = 11 - d
+
+    t_s = s ** (-W[9])
+
+    t_r = exp(W[10] * (1.0 - r)) - 1.0
+
+    h = W[15] if g == Grade.HARD else 1.0
+
+    b = w[16] if g == Grade.EASY else 1.0
+
+    c = exp(W[8])
+
+    alpha = 1 + t_d*t_s*t_r*h*b*c
+
+    return s*alpha
+```
+
 ## Stability on Failure
 
-TODO
 
 # Updating Difficulty
 
