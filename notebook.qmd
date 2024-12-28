@@ -407,9 +407,6 @@ def delta_d(g: Grade) -> float:
 # The Simulator
 
 ```{python}
-from dataclasses import dataclass
-from math import floor
-
 def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D, T]]:
     t: T = 0.0
     r_d: float = 0.9
@@ -421,7 +418,7 @@ def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D, T]]:
     grades = grades[1:]
     s: S = s_0(g)
     d: D = d_0(g)
-    i: T = floor(interval(r_d, s))
+    i: T = round(interval(r_d, s))
     l.append((t, g, s, d, i))
 
     # nth review.
@@ -430,7 +427,7 @@ def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D, T]]:
         r = retrievability(i, s)
         s = stability(d, s, r, g)
         d = difficulty(d, g)
-        i = floor(interval(r_d, s))
+        i = round(interval(r_d, s))
         l.append((t, g, s, d, i))
 
     return l
