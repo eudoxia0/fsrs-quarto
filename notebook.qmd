@@ -6,6 +6,8 @@ format:
 jupyter: python3
 ---
 
+# Parameters
+
 Retrievability $R$ is a real number in $[0, 1]$.
 
 ```{python}
@@ -67,6 +69,8 @@ W: list[float] = [
 ]
 ```
 
+# Retrievability
+
 Retrievability is approximated by:
 
 $$
@@ -116,6 +120,8 @@ def plot():
 
 plot()
 ```
+
+# Interval
 
 The review interval is:
 
