@@ -262,7 +262,7 @@ $$
 
 If recall was easy, it has no effect ($t_4=1$). If recall was hard, we apply $w_{15}$ (a learned parameter between 0 and 1). This penalizes stability growth where recall was shaky.
 
-TODO is this actually true?
+TODO: check the actual conditions of $G$
 
 ## Stability on Failure
 
