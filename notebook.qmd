@@ -255,14 +255,12 @@ This is the hard penalty:
 
 $$
 h(G) = \begin{cases}
-  1  & G = 3 \lor G = 4  \\
-  w_{15} & G = 2
+  w_{15} & G = 2 \\
+  1      & \text{otherwise}
 \end{cases}
 $$
 
-If recall was easy, it has no effect ($h(4) = 1$). If recall was hard, we apply $w_{15}$ (a learned parameter between 0 and 1). This penalizes stability growth where recall was shaky.
-
-TODO: check the actual conditions of $G$
+If recall was hard, we apply $w_{15}$ (a learned parameter between 0 and 1). This penalizes stability growth where recall was shaky. Otherwise, it has no effect.
 
 ### $b$
 
@@ -270,14 +268,12 @@ This is the opposite of $h$, a bonus for easy recall:
 
 $$
 b(G) = \begin{cases}
-  1  & G = 2 \lor G = 3 \\
-  w_{16} & G = 4
+  w_{16} & G = 4 \\
+  1      & \text{otherwise}
 \end{cases}
 $$
 
-If recall was hard or good, there is no bonus. If recall was easy, we multiply by $w_{16}$, a number greater than one, which scales up.
-
-TODO verify actual conditions of $G$
+If recall was easy, we multiply by $w_{16}$, a number greater than one, which scales stability up. Otherwise, it has no effect.
 
 ### $c$
 
