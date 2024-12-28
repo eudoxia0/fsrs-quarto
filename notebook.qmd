@@ -333,11 +333,11 @@ $$
 
 ```{python}
 def s_fail(d: D, s: S, r: R) -> S:
-    d_f = D ** (-W[12])
+    d_f = d ** (-W[12])
 
-    s_f = (S + 1.0) ** W[13] - 1.0
+    s_f = (s + 1.0) ** W[13] - 1.0
 
-    r_s = exp(W[14] * (1.0 - r))
+    r_f = exp(W[14] * (1.0 - r))
 
     c_f = W[11]
 
@@ -460,6 +460,12 @@ All hard:
 
 ```{python}
 sim2df(sim([G1, G1, G1, G1]))
+```
+
+All forgot:
+
+```{python}
+sim2df(sim([G0, G0, G0, G0]))
 ```
 
 # Links
