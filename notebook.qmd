@@ -409,9 +409,10 @@ def delta_d(g: Grade) -> float:
 ```{python}
 from dataclasses import dataclass
 
-def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D]]:
+def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D, T]]:
     t: T = 0.0
-    l: list[tuple[T, Grade, S, D]] = []
+    r_d: float = 0.9
+    l: list[tuple[T, Grade, S, D, T]] = []
 
     # Initial review.
     assert len(grades) > 0
@@ -419,7 +420,7 @@ def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D]]:
     grades = grades[1:]
     s: S = s_0(g)
     d: D = d_0(g)
-    l.append((t, g, s, d))
+    l.append((t, g, s, d, int(interval(r_d, s))))
 
     # nth review.
     for g in grades:
@@ -427,7 +428,8 @@ def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D]]:
         r = retrievability(1.0, s)
         s = stability(d, s, r, g)
         d = difficulty(d, g)
-        l.append((t, g, s, d))
+        next_i = int(interval(r_d, s))
+        l.append((t, g, s, d, next_i))
 
     return l
 ```
@@ -441,7 +443,7 @@ G3 = Grade.EASY
 import pandas as pd
 
 def sim2df(r: list[tuple[T, Grade, S, D]]):
-    return pd.DataFrame(r, columns=['t', 'g', 's', 'd'])
+    return pd.DataFrame(r, columns=['t', 'g', 's', 'd', 'i'])
 ```
 
 All easy:
