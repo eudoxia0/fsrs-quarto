@@ -6,6 +6,20 @@ format:
 jupyter: python3
 ---
 
+Retrievability $R$ is a real number in $[0, 1]$.
+
 ```{python}
-print("Hello, world!")
+R = float
+```
+
+Stability $S$ is a real number $[0, +\infty]$.
+
+```{python}
+S = float
+```
+
+Difficulty $D$ is a real number $[0, 10]$.
+
+```{python}
+D = float
 ```
