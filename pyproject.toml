@@ -1,0 +1,7 @@
+[project]
+name = "fsrs-quarto"
+version = "0.1.0"
+description = "A Quarto notebook to explore FSRS."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
