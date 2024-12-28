@@ -174,3 +174,23 @@ def eq(a: float, b: float) -> bool:
 for s in np.linspace(0.1, 3.0, 100):
     assert eq(interval(0.9, s), s)
 ```
+
+# Updating Stability
+
+TODO
+
+## First Time
+
+TODO
+
+## Stability on Success
+
+TODO
+
+## Stability on Failure
+
+TODO
+
+# Updating Difficulty
+
+TODO
