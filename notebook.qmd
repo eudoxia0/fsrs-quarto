@@ -92,6 +92,31 @@ def retrievability(t: T, s: S) -> R:
     return (1.0 + F*(t/s))**C
 ```
 
+Retrievability curves for different values of stability:
+
+```{python}
+#| code-fold: true
+import numpy as np
+import matplotlib.pyplot as plt
+
+def plot():
+    t = np.linspace(0, 30, 200)
+    s_values = [0.1, 0.5, 1.0, 2.0]
+    for s in s_values:
+        y = [retrievability(t_val, s) for t_val in t]
+        plt.plot(t, y, label=f's = {s}')
+    plt.xlabel('t')
+    plt.ylabel('R(t)')
+    plt.xlim(0, 30)
+    plt.ylim(0.0, 1.0)
+    plt.yticks(np.arange(0, 1.1, 0.1))
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+plot()
+```
+
 The review interval is:
 
 $$
