@@ -224,7 +224,7 @@ The addition is because some of the multiplicative terms may be zero, and in tha
 This is the "difficulty penalty", defined by:
 
 $$
-d = 11-D
+t_1 = 11-D
 $$
 
 Harder items (higher $D$) increase stability more slowly. The highest difficulty is $D=10$, here, $d=1$ and therefore difficulty provides no boost. This is intuitive: harder items are harder to consolidate.
@@ -234,7 +234,7 @@ Harder items (higher $D$) increase stability more slowly. The highest difficulty
 This determines how today's stability affects the next stability:
 
 $$
-s = S^{-w_9}
+t_2 = S^{-w_9}
 $$
 
 If $S$ is high, updates will be smaller. The more stable a memory is, the harder it is to make it more stable. Memory stability saturates.
@@ -244,7 +244,7 @@ If $S$ is high, updates will be smaller. The more stable a memory is, the harder
 This is about memory saturation:
 
 $$
-r = e^{w_{10}(1-R)} - 1
+t_3 = e^{w_{10}(1-R)} - 1
 $$
 
 If $R=1$ (100% recall) then $t_3=0$. So $\alpha$ as a whole is $1$, i.e. stability does not change. The lower $R$ is, the higher $\alpha$ will be. So the optimal time to review some material is when you have almost forgotten it. Which is somewhat counterintuitive, but it makes sense: the more you remember something, the fewer the gains from reviewing, dually, the more you have forgotten it, the more room there is to improve.
@@ -254,7 +254,7 @@ If $R=1$ (100% recall) then $t_3=0$. So $\alpha$ as a whole is $1$, i.e. stabili
 This is the hard penalty:
 
 $$
-h = \begin{cases}
+t_4 = \begin{cases}
   1  & G = 3 \lor G = 4  \\
   w_{15} & G = 2
 \end{cases}
@@ -263,6 +263,21 @@ $$
 If recall was easy, it has no effect ($t_4=1$). If recall was hard, we apply $w_{15}$ (a learned parameter between 0 and 1). This penalizes stability growth where recall was shaky.
 
 TODO: check the actual conditions of $G$
+
+### $t_5$
+
+This is the opposite of the previous term, a bonus for easy recall:
+
+$$
+t_5 = \begin{cases}
+  1  & G = 2 \lor G = 3 \\
+  w_{16} & G = 4
+\end{cases}
+$$
+
+If recall was hard or good, there is no bonus. If recall was easy, we multiply by $w_{16}$, a number greater than one, which scales up.
+
+TODO verify actual conditions of $G$
 
 ## Stability on Failure
 
