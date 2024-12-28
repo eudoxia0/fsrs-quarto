@@ -239,6 +239,16 @@ $$
 
 If $S$ is high, updates will be smaller. The more stable a memory is, the harder it is to make it more stable. Memory stability saturates.
 
+### $t_3$
+
+This is about memory saturation:
+
+$$
+r = e^{w_{10}(1-R)} - 1
+$$
+
+If $R=1$ (100% recall) then $r=0$. So $\alpha$ as a whole is $1$, i.e. stability does not change. The lower $R$ is, the higher $\alpha$ will be. So the optimal time to review some material is when you have almost forgotten it. Which is somewhat counterintuitive, but it makes sense: the more you remember something, the fewer the gains from reviewing, dually, the more you have forgotten it, the more room there is to improve.
+
 
 ## Stability on Failure
 
