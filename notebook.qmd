@@ -214,7 +214,7 @@ $$
 Where:
 
 $$
-\alpha = 1 + t_1 t_2 t_3 t_4 t_5 c
+\alpha = 1 + t_1 t_2 t_3 h(G) b(G) c
 $$
 
 The addition is because some of the multiplicative terms may be zero, and in that case, $\alpha=1$.
@@ -249,27 +249,27 @@ $$
 
 If $R=1$ (100% recall) then $t_3=0$. So $\alpha$ as a whole is $1$, i.e. stability does not change. The lower $R$ is, the higher $\alpha$ will be. So the optimal time to review some material is when you have almost forgotten it. Which is somewhat counterintuitive, but it makes sense: the more you remember something, the fewer the gains from reviewing, dually, the more you have forgotten it, the more room there is to improve.
 
-### $t_4$
+### $h$
 
 This is the hard penalty:
 
 $$
-t_4 = \begin{cases}
+h(G) = \begin{cases}
   1  & G = 3 \lor G = 4  \\
   w_{15} & G = 2
 \end{cases}
 $$
 
-If recall was easy, it has no effect ($t_4=1$). If recall was hard, we apply $w_{15}$ (a learned parameter between 0 and 1). This penalizes stability growth where recall was shaky.
+If recall was easy, it has no effect ($h(4) = 1$). If recall was hard, we apply $w_{15}$ (a learned parameter between 0 and 1). This penalizes stability growth where recall was shaky.
 
 TODO: check the actual conditions of $G$
 
-### $t_5$
+### $b$
 
-This is the opposite of the previous term, a bonus for easy recall:
+This is the opposite of $h$, a bonus for easy recall:
 
 $$
-t_5 = \begin{cases}
+b(G) = \begin{cases}
   1  & G = 2 \lor G = 3 \\
   w_{16} & G = 4
 \end{cases}
