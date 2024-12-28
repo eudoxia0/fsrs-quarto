@@ -203,7 +203,31 @@ That is, the parameters $w_0$ to $w_3$ represent the initial values of stability
 
 ## Stability on Success
 
-TODO
+Stability is updated differently depending on whether the user forgot ($G=1$) or remembered ($G \in [2,3,4]$) the item. The equation is very big, so I'm going to break it down hierarchically.
+
+After a review, stability is updated by multiplying it with a scaling factor $\alpha$:
+
+$$
+S'(D, S, R, G) = S\alpha
+$$
+
+Where:
+
+$$
+\alpha = 1 + t_1 t_2 t_3 t_4 t_5 t_6
+$$
+
+The addition is because some of the multiplicative terms may be zero, and in that case, $\alpha=1$.
+
+# $t_1$
+
+This is the "difficulty penalty", defined by:
+
+$$
+d = 11-D
+$$
+
+Harder items (higher $D$) increase stability more slowly. The highest difficulty is $D=10$, here, $d=1$ and therefore difficulty provides no boost. This is intuitive: harder items are harder to consolidate.
 
 ## Stability on Failure
 
