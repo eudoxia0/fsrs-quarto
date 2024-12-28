@@ -370,10 +370,19 @@ Analogously with stability: an item that has never been reviewed has no difficul
 The initial difficulty, after the first review, is defined by:
 
 $$
-D_0(G) = w_4 - (G-3)w_5
+D_0(G) = w_4 - e^{w_5(G-1)} + 1
 $$
 
-Note that where $G=3$ (i.e. Good) then $D_0(3) = w_4$, that is, the parameter $w_4$ represents the initial difficulty for a rating of Good, while $w_5$ is an initial difficulty multiplier.
+```{python}
+def d_0(g: Grade) -> D:
+    return W[4] - exp(W[5] * (g.value - 1.0)) + 1
+```
+
+Note that when $G=1$ (forgot), then $D_0(1) = w_4$, that is, $w_4$ is the initial difficulty of an item when its first review was a failure.
+
+```{python}
+assert d_0(Grade.FORGOT) == W[4]
+```
 
 # Links
 
