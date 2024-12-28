@@ -408,6 +408,7 @@ def delta_d(g: Grade) -> float:
 
 ```{python}
 from dataclasses import dataclass
+from math import floor
 
 def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D, T]]:
     t: T = 0.0
@@ -420,8 +421,8 @@ def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D, T]]:
     grades = grades[1:]
     s: S = s_0(g)
     d: D = d_0(g)
-    i: T = interval(r_d, s)
-    l.append((t, g, s, d, int(i)))
+    i: T = floor(interval(r_d, s))
+    l.append((t, g, s, d, i))
     t += i
 
     # nth review.
@@ -429,8 +430,8 @@ def sim(grades: list[Grade]) -> list[tuple[T, Grade, S, D, T]]:
         r = retrievability(i, s)
         s = stability(d, s, r, g)
         d = difficulty(d, g)
-        i = interval(r_d, s)
-        l.append((t, g, s, d, int(i)))
+        i = floor(interval(r_d, s))
+        l.append((t, g, s, d, i))
         t += i
 
     return l
@@ -448,28 +449,10 @@ def sim2df(r: list[tuple[T, Grade, S, D]]):
     return pd.DataFrame(r, columns=['t', 'g', 's', 'd', 'i'])
 ```
 
-All easy:
-
-```{python}
-sim2df(sim([G3, G3, G3, G3]))
-```
-
 All good:
 
 ```{python}
-sim2df(sim([G2, G2, G2, G2]))
-```
-
-All hard:
-
-```{python}
-sim2df(sim([G1, G1, G1, G1]))
-```
-
-All forgot:
-
-```{python}
-sim2df(sim([G0, G0, G0, G0]))
+sim2df(sim([G2, G2, G2]))
 ```
 
 # Links
