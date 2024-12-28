@@ -163,7 +163,7 @@ def plot():
 plot()
 ```
 
-At higher $R_d$, reviews will be more frequent.
+At higher $R_d$, reviews will be more frequent, which is what we expect.
 
 Note that when $R_d = 0.9$, $I(S) = S$:
 
