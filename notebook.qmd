@@ -384,6 +384,29 @@ Note that when $G=1$ (forgot), then $D_0(1) = w_4$, that is, $w_4$ is the initia
 assert d_0(Grade.FORGOT) == W[4]
 ```
 
+## $n$-th time
+
+For any review other than the first, difficulty is updated by:
+
+$$
+\begin{align*}
+D''(D, G)      &= w_7 D_0(4) + (1 - w_7)D'(D, G) \\
+D'(D, G)       &= D + \Delta D(G) \left( \frac{10 - D}{9} \right) \\
+\Delta D(G) &= - w_6 (G-3)
+\end{align*}
+$$
+
+```{python}
+def difficulty(d: D, g: Grade) -> D:
+    W[7] * d_0(Grade.EASY) + (1.0 - W[7])*dp(d, g)
+
+def dp(d: D, g: Grade) -> float:
+    d + delta_d(g) * ((10.0 - d)/9)
+
+def delta_d(g: Grade) -> float:
+    -W[6] * (g.value - 3.0)
+```
+
 # Links
 
 - Description of the algorithm: <https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm>
