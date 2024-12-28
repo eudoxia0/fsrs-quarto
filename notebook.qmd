@@ -247,8 +247,22 @@ $$
 r = e^{w_{10}(1-R)} - 1
 $$
 
-If $R=1$ (100% recall) then $r=0$. So $\alpha$ as a whole is $1$, i.e. stability does not change. The lower $R$ is, the higher $\alpha$ will be. So the optimal time to review some material is when you have almost forgotten it. Which is somewhat counterintuitive, but it makes sense: the more you remember something, the fewer the gains from reviewing, dually, the more you have forgotten it, the more room there is to improve.
+If $R=1$ (100% recall) then $t_3=0$. So $\alpha$ as a whole is $1$, i.e. stability does not change. The lower $R$ is, the higher $\alpha$ will be. So the optimal time to review some material is when you have almost forgotten it. Which is somewhat counterintuitive, but it makes sense: the more you remember something, the fewer the gains from reviewing, dually, the more you have forgotten it, the more room there is to improve.
 
+### $t_4$
+
+This is the hard penalty:
+
+$$
+h = \begin{cases}
+  1  & G = 3 \lor G = 4  \\
+  w_{15} & G = 2
+\end{cases}
+$$
+
+If recall was easy, it has no effect ($t_4=1$). If recall was hard, we apply $w_{15}$ (a learned parameter between 0 and 1). This penalizes stability growth where recall was shaky.
+
+TODO is this actually true?
 
 ## Stability on Failure
 
