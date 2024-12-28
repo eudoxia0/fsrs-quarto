@@ -297,7 +297,7 @@ def s_success(d: D, s: S, r: R, g: Grade) -> S:
 
     h = W[15] if g == Grade.HARD else 1.0
 
-    b = w[16] if g == Grade.EASY else 1.0
+    b = W[16] if g == Grade.EASY else 1.0
 
     c = exp(W[8])
 
@@ -440,7 +440,26 @@ G3 = Grade.EASY
 
 import pandas as pd
 
-print(sim([G2, G2, G2, G2]))
+def sim2df(r: list[tuple[T, Grade, S, D]]):
+    return pd.DataFrame(r, columns=['t', 'g', 's', 'd'])
+```
+
+All easy:
+
+```{python}
+sim2df(sim([G3, G3, G3, G3]))
+```
+
+All good:
+
+```{python}
+sim2df(sim([G2, G2, G2, G2]))
+```
+
+All hard:
+
+```{python}
+sim2df(sim([G1, G1, G1, G1]))
 ```
 
 # Links
